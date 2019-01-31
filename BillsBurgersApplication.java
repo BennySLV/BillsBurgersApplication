@@ -158,12 +158,6 @@ public class BillsBurgersApplication {
                 addAdditions();
                 processOrder();
                 break;
-            case 2:
-                //healthyBurger = new HealthyBurger();
-                break;
-            case 3:
-                //deluxeBurger = new DeluxeBurger();
-                break;
         }
     }
 } 
