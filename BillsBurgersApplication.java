@@ -15,8 +15,6 @@ import java.util.Scanner;
  */
 public class BillsBurgersApplication {
     private Hamburger hamburger;
-    //private HealthyBurger healthyBurger;
-    //private DeluxeBurger deluxeBurger;
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
