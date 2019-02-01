@@ -19,6 +19,44 @@ public class BillsBurgersApplication {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
+     * Add the main ingredients
+     * to the burger
+     *
+     * These are both the bread roll
+     * and the meat
+     *
+     * This method gives the user the opportunity
+     * to therefore add all ingredients
+     */
+    private void addMainIngredients() {
+        boolean hasNotConfirmedSelection = true;
+        while(hasNotConfirmedSelection) {
+            System.out.print("Please add your breadroll: ");
+            String breadRollType = SCANNER.next();
+            hamburger.setBreadRollType(new BreadRoll(breadRollType));
+
+            System.out.print("Confirm answer? (Y / N): ");
+            String answer = SCANNER.next();
+            
+            if(answer.equalsIgnoreCase("Yes") ||
+                    answer.equalsIgnoreCase("Y")) {
+                System.out.print("Please add your meat: ");
+                String meatType = SCANNER.next();
+                hamburger.setMeatType(new Meat(meatType));
+                hasNotConfirmedSelection = false;
+            }
+            else if(answer.equalsIgnoreCase("No") ||
+                    answer.equalsIgnoreCase("N")) {
+                continue;
+            }
+            else {
+                System.out.println("Please provide an appropriate answer (i.e. Yes (Y) or No (N).");
+                continue;
+            }
+        }
+    }
+
+    /**
      * Add additions to the burger.
      *
      * These include both fillings and
@@ -151,8 +189,8 @@ public class BillsBurgersApplication {
         int burgerSelection = SCANNER.nextInt();
         switch(burgerSelection) {
             case 1:
-                hamburger = new Hamburger(new BreadRoll("Italian"),
-                        new Meat("Beef"));
+                hamburger = new Hamburger();
+                addMainIngredients();
                 addAdditions();
                 processOrder();
                 break;
