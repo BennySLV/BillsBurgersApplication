@@ -3,7 +3,7 @@ package Section5.BillsBurgers;
 import java.util.Scanner;
 
 /**
- * Complete Java Masterclass
+ * Java Programming Masterclass for Software Developers
  *
  * Section 5 - OOP (2) Composition, Encapsulation and Polymorphism
  *
@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class BillsBurgersApplication {
     private Hamburger hamburger;
     private HealthyBurger healthyBurger;
+    private DeluxeBurger deluxeBurger;
 
     private int burgerSelection;
 
@@ -42,31 +43,24 @@ public class BillsBurgersApplication {
             else if(this.burgerSelection == 2) {
                 healthyBurger.setBreadRollType(new BreadRoll("Brown Rye"));
             }
-
-            System.out.print("Confirm answer? (Y / N): ");
-            String answer = SCANNER.next();
-
-            if(answer.equalsIgnoreCase("Yes") ||
-                    answer.equalsIgnoreCase("Y")) {
-                System.out.print("Please add your meat: ");
-                String meatType = SCANNER.next();
-
-                if(this.burgerSelection == 1) {
-                    hamburger.setMeatType(new Meat(meatType));
-                }
-                else if(this.burgerSelection == 2) {
-                    healthyBurger.setMeatType(new Meat(meatType));
-                }
-                hasNotConfirmedSelection = false;
+            else if(this.burgerSelection == 3) {
+                System.out.print("Please add your bread roll: ");
+                String breadRollType = SCANNER.next();
+                deluxeBurger.setBreadRollType(new BreadRoll(breadRollType));
             }
-            else if(answer.equalsIgnoreCase("No") ||
-                    answer.equalsIgnoreCase("N")) {
-                continue;
+            System.out.print("Please add your meat: ");
+            String meatType = SCANNER.next();
+
+            if(this.burgerSelection == 1) {
+                hamburger.setMeatType(new Meat(meatType));
             }
-            else {
-                System.out.println("Please provide an appropriate answer (i.e. Yes (Y) or No (N).");
-                continue;
+            else if(this.burgerSelection == 2) {
+                healthyBurger.setMeatType(new Meat(meatType));
             }
+            else if(this.burgerSelection == 3) {
+                deluxeBurger.setMeatType(new Meat(meatType));
+            }
+            hasNotConfirmedSelection = false;
         }
     }
 
@@ -78,7 +72,7 @@ public class BillsBurgersApplication {
      * based on the user's request.
      */
     private void addAdditions() {
-        System.out.print("Would like to add any additions to your burger (i.e. fillings and/or condiments? : ");
+        System.out.print("Would like to add any additions to your burger (i.e. fillings and/or condiments?) (Y / N) : ");
         String additionsAnswer = SCANNER.next();
         if(additionsAnswer.equalsIgnoreCase("Yes") ||
                 additionsAnswer.equalsIgnoreCase("Y")) {
@@ -90,48 +84,30 @@ public class BillsBurgersApplication {
                 case 1:
                     if(this.burgerSelection == 1) {
                         hamburger.addFilling();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.addFilling();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                 case 2:
                     if(this.burgerSelection == 1) {
                         hamburger.addCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.addCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                 case 3:
                     if(this.burgerSelection == 1) {
                         hamburger.addFilling();
                         hamburger.addCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.addFilling();
                         healthyBurger.addCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
             }
@@ -159,82 +135,34 @@ public class BillsBurgersApplication {
                 case 1:
                     if(this.burgerSelection == 1) {
                         hamburger.removeFilling();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.removeFilling();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                 case 2:
                     if(this.burgerSelection == 1) {
                         hamburger.removeCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.removeCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                 case 3:
                     if(this.burgerSelection == 1) {
                         hamburger.removeFilling();
                         hamburger.removeCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
                     else if(this.burgerSelection == 2) {
                         healthyBurger.removeFilling();
                         healthyBurger.removeCondiment();
-                        System.out.print("Confirm selection? (Y / N) : ");
-                        String answer = SCANNER.next();
-                        confirmAdditionsSelection(answer);
                         break;
                     }
             }
             processOrder();
-        }
-    }
-
-    /**
-     * Confirm selection for
-     * additions and removals of additions.
-     *
-     * This method will be used
-     * for all possible selection
-     * options (i.e. for adding and removing fillings
-     * and/or condiments)
-     *
-     * @param answer The answer for the confirmation
-     */
-    private void confirmAdditionsSelection(String answer) {
-        boolean hasNotConfirmedSelection = true;
-
-        while(hasNotConfirmedSelection) {
-            if(answer.equalsIgnoreCase("Yes") ||
-                    answer.equalsIgnoreCase("Y")) {
-                hasNotConfirmedSelection = false;
-            }
-            else if(answer.equalsIgnoreCase("No") ||
-                    answer.equalsIgnoreCase("N")) {
-                removeAdditions();
-                hasNotConfirmedSelection = false;
-            }
-            else {
-                System.out.println("Please enter an appropriate answer (Yes / No)");
-            }
         }
     }
 
@@ -249,17 +177,20 @@ public class BillsBurgersApplication {
         else if(this.burgerSelection == 2) {
             healthyBurger.displayOrderDetails();
         }
+        else if(this.burgerSelection == 3) {
+            deluxeBurger.displayOrderDetails();
+        }
         System.exit(0);
     }
 
     /**
-     * Run the Bills Burger application here
+     * Run the Bills Burgers application here
      *
      * This method allows minimum code to be run in the main method
      */
-    public void runApplication() {
-        System.out.println("Hello! Welcome to Bills Burgers! Please select from the following options: \n"
-                + "\t 1 - Standard Hamburger \n\t 2 - Healthy Burger \n\t 3 - Deluxe Burger");
+    void runApplication() {
+        System.out.println("Hello! Welcome to Bills Burgers! Please select from the following three options: \n"
+                + "\t 1 - Hamburger \n\t 2 - Healthy Burger \n\t 3 - Deluxe Burger");
 
         this.burgerSelection = SCANNER.nextInt();
         switch(burgerSelection) {
@@ -273,6 +204,13 @@ public class BillsBurgersApplication {
                 healthyBurger = new HealthyBurger("Healthy Burger", 6.50);
                 addMainIngredients();
                 addAdditions();
+                processOrder();
+                break;
+            case 3:
+                deluxeBurger = new DeluxeBurger("Deluxe Burger", 8.00);
+                addMainIngredients();
+                deluxeBurger.addDrink();
+                deluxeBurger.addSideDish();
                 processOrder();
                 break;
         }
