@@ -7,9 +7,9 @@ import java.util.Scanner;
  *
  * Section 5 - OOP (2) Composition, Encapsulation and Polymorphism
  *
- * This class will form the Bills Burgers application
- * and will contain the functionality for both running
- * and closing the entire application.
+ * This class will form the functionality
+ * for both running and closing
+ * the Bills Burgers application platform.
  *
  * @author Ben Silveston
  */
@@ -36,29 +36,22 @@ public class BillsBurgersApplication {
         boolean hasNotConfirmedSelection = true;
         while(hasNotConfirmedSelection) {
             if(this.burgerSelection == 1) {
-                System.out.print("Please add your bread roll: ");
-                String breadRollType = SCANNER.next();
-                hamburger.setBreadRollType(new BreadRoll(breadRollType));
+                hamburger.addBreadRoll();
             }
             else if(this.burgerSelection == 2) {
-                healthyBurger.setBreadRollType(new BreadRoll("Brown Rye"));
+                healthyBurger.addBreadRoll();
             }
             else if(this.burgerSelection == 3) {
-                System.out.print("Please add your bread roll: ");
-                String breadRollType = SCANNER.next();
-                deluxeBurger.setBreadRollType(new BreadRoll(breadRollType));
+                deluxeBurger.addBreadRoll();
             }
-            System.out.print("Please add your meat: ");
-            String meatType = SCANNER.next();
-
             if(this.burgerSelection == 1) {
-                hamburger.setMeatType(new Meat(meatType));
+                hamburger.addMeat();
             }
             else if(this.burgerSelection == 2) {
-                healthyBurger.setMeatType(new Meat(meatType));
+                healthyBurger.addMeat();
             }
             else if(this.burgerSelection == 3) {
-                deluxeBurger.setMeatType(new Meat(meatType));
+                deluxeBurger.addMeat();
             }
             hasNotConfirmedSelection = false;
         }
