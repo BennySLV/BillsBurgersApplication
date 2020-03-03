@@ -5,8 +5,8 @@ package Section5.BillsBurgers;
  *
  * Section 5 - OOP (2) Composition, Encapsulation and Polymorphism
  *
- * This class will form the Bills Burgers application
- * and will only contain the main method.
+ * This main class will run the Bills Burgers
+ * application.
  *
  * @author Ben Silveston
  */
