@@ -24,7 +24,7 @@ import java.util.Scanner;
  *
  * @author Ben Silveston
  */
-public class HealthyBurger extends Hamburger {
+public class HealthyBurger extends Burger {
     private Filling filling;
     private Condiment condiment;
 
@@ -33,30 +33,23 @@ public class HealthyBurger extends Hamburger {
     /**
      * Constructor
      *
-     * Inherited from the hamburger
-     * superclass
-     *
      * @param burgerName The name of the burger
      * @param price The price of the burger
      */
-    public HealthyBurger(String burgerName, double price) {
+    HealthyBurger(String burgerName, double price) {
         super(burgerName, price);
     }
 
     /**
-     * Remove the bread roll type from the burger
+     * Add the Brown Rye
+     * bread roll to the Healthy Burger.
+     *
+     * Note that this is the only
+     * available bread roll for this burger.
      */
     @Override
-    protected void removeBreadRoll() {
-        super.removeBreadRoll();
-    }
-
-    /**
-     * Remove the type of meat from the burger
-     */
-    @Override
-    protected void removeMeat() {
-        super.removeMeat();
+    public void addBreadRoll() {
+        this.setBreadRoll(new BreadRoll("Brown Rye"));
     }
 
     /**
@@ -74,27 +67,22 @@ public class HealthyBurger extends Hamburger {
         System.out.print("How many additional fillings would you like to add? (max. 2): ");
         int numberOfAdditionalFillingsToAdd = SCANNER.nextInt();
 
-        while(numberOfAdditionalFillingsAdded < numberOfAdditionalFillingsToAdd) {
-            System.out.print("Please add your filling: ");
-            String fillingToAdd = SCANNER.next();
+        if(numberOfAdditionalFillingsToAdd <= maxNumberOfAdditionalFillings) {
+            while(numberOfAdditionalFillingsAdded < numberOfAdditionalFillingsToAdd) {
+                System.out.print("Please add your filling: ");
+                String fillingToAdd = SCANNER.next();
 
-            if(numberOfAdditionalFillingsToAdd <= maxNumberOfAdditionalFillings) {
                 for(int i = 0; i < numberOfAdditionalFillingsToAdd; i++) {
                     this.filling = new Filling(fillingToAdd);
                 }
                 this.getAddedFillings().add(this.filling);
+                numberOfAdditionalFillingsAdded++;
+                this.currentNumberOfFillings++;
             }
-            numberOfAdditionalFillingsAdded++;
-            this.currentNumberOfFillings++;
         }
-    }
-
-    /**
-     * Remove a filling from the burger
-     */
-    @Override
-    public void removeFilling() {
-        super.removeFilling();
+        else {
+            System.out.println("Error - can only add a maximum of 2 additional fillings!");
+        }
     }
 
     /**
@@ -102,8 +90,6 @@ public class HealthyBurger extends Hamburger {
      */
     @Override
     public void addCondiment() {
-        super.addCondiment();
-
         int maxNumberOfAdditionalCondiments = 1;
         int numberOfAdditionalCondimentsAdded = 0;
 
@@ -124,24 +110,5 @@ public class HealthyBurger extends Hamburger {
             numberOfAdditionalCondimentsAdded++;
             this.currentNumberOfCondiments++;
         }
-    }
-
-    /**
-     * Remove the current condiment from the burger
-     */
-    @Override
-    public void removeCondiment() {
-        super.removeCondiment();
-    }
-
-    /**
-     * Calculate the final cost of the
-     * burger (i.e. burger + filling + condiment)
-     * <p>
-     * Should a filling and condiment be added in the first place
-     */
-    @Override
-    public void displayOrderDetails() {
-        super.displayOrderDetails();
     }
 }
